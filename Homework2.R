@@ -16,3 +16,11 @@ print(a)
 name = "Annika"
 print(name)
 
+#dataframe
+dataframe = data.frame (
+  Name = c("Annika", "Siden", "Travis", "Summer"),
+  Number = c(7, 17, 27, 37)
+)
+print(dataframe)
+# learning note, c=combine
+

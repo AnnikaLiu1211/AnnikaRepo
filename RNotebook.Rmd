@@ -1,13 +1,67 @@
+# Homework 2.2
+---
+title: "Exploring the Manifestation of Comorbid Symptoms in Chinese Adolescents with Depression"
+shorttitle: "Clinical depression in Chinese adolescents"
+author: "Annika Liu"
+date: Jan,12,2024
+---
+## source 
+source("~/Desktop/R/AnnikaRepo, Homework/Hellowworld.R")
+
+```{r, include=FALSE}
+# object assignment
+hello_world <- function(name = NULL) {
+  # conditional statement: greeting based on if there is a name 
+  message <- if (!is.null(name) && nchar(name) > 0) {
+      # learning notes: !is.null(name) will be true if the name is not Null
+      # nchar helps to to check whether the number of charecters in the string is 0
+    paste0("Hello ", name, "!")
+  } else {
+    "Hello!"
+  }
+  print(message)
+}
+
+ # return value 1
+hello_world("Annika")
+ # return value 2
+hello_world()
+```
+
+## markdowns practice 
+
+### Headers <!-- I've have each of the three -->
+### 1 unordered list
+* List item 1
+  * List item 2
+    * List item 3
+    
+### 1 ordered list
+1. List item 1
+2. List item 2
+   1.  a
+3. List item 3
+    
+### Bold & italicized text
+**BOLD**
+*italics*
+
+### linked URL
+[example link](https://andiwodbajbdh.com)
+
+### 1 HTML-style comment
+<!-- comment comment comment -->
+
 ---
 title             : "Exploring the Manifestation of Comorbid Symptoms in Chinese Adolescents with Depression"
-shorttitle        : "Clinical dipression in Chinese adolescents"
-
+shorttitle        : "Clinical depression in Chinese adolescents"
+---
 author: 
   - name          : "Annika Liu"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "Postal address"
-    email         : "my@email.com"
+    email         : "xliu13@uchicago.edu"
     role: # Contributorship roles (e.g., CRediT, https://credit.niso.org/)
       - "Conceptualization"
       - "Writing - Original Draft Preparation"

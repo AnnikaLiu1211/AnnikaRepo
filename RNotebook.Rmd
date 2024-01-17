@@ -1,10 +1,45 @@
-# Homework 2.2
 ---
 title: "Exploring the Manifestation of Comorbid Symptoms in Chinese Adolescents with Depression"
 shorttitle: "Clinical depression in Chinese adolescents"
 author: "Annika Liu"
-date: Jan,12,2024
+date: Jan,17,2024
 ---
+## Homework 3.1
+```{r read my data, include=FALSE}
+# Load readr function
+library(readr)
+
+# find my pathway 
+file_path <- "Depression.xlsx"
+Depression.data <- readxl::read_excel(file_path)
+
+str(Depression.data)
+```
+<!-- This is a tidy data seems like each column is a single variable, each row is a single observation, each cell is a single measurement -->
+<!-- Sex, Age, SAS score/level, SDS score/level, and the following cormbid factors are necessary -->
+```{r create-intermediate-dataset, echo=TRUE}
+library(writexl)
+library(dplyr)
+library(readxl)
+
+file_path <- "Depression.xlsx"
+Depression.data <- readxl::read_excel(file_path)
+
+# Using two dplyr functions
+SASMild.data <- Depression.data %>%
+  filter(`Anxiety Level (SAS)` == "Mild") %>%
+  mutate(SASMean = mean(`Index Score (SAS)`, na.rm = TRUE))
+
+# Specify the full path to the directory and the new Excel file
+SASMild.data_file_path <- "SASMild_data.xlsx"
+
+# Write the intermediate dataset to an Excel file
+writexl::write_xlsx(SASMild.data, SASMild.data_file_path)
+
+str(SASMild.data)
+```
+<!-- the excel seems like doing what I am asking -->
+
 ## source 
 source("~/Desktop/R/AnnikaRepo, Homework/Hellowworld.R")
 

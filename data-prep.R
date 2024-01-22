@@ -1,7 +1,7 @@
 # Homework 3.2 mock-up plan
 # import the librarys
 library(writexl)
-library(dplyr)
+library(dplyr) 
 library(readxl)
 
 # read the original data
@@ -25,4 +25,4 @@ Depression.data <- Depression.data.long %>%
 Depression.data.long_file_path <- "Depression.data.long.xlsx"
 
 # Write the intermediate dataset to the Excel file
-writexl::write_xlsx(Depression.data.long, Depression.data.long_file_path)
+writexl::write_xlsx(Depression.data.long, Depression.data.long_file_path) 

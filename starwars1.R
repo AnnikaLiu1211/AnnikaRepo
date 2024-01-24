@@ -1,6 +1,6 @@
 library(tidyverse)
 
-## Create your goal tibble to replicate
+## Create your goal tibble to replicate 
 
 # Run this line to see what your end product should look like
 library(magrittr)

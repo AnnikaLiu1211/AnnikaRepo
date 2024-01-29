@@ -2,9 +2,69 @@
 title: "Exploring the Manifestation of Comorbid Symptoms in Chinese Adolescents with Depression"
 shorttitle: "Clinical depression in Chinese adolescents"
 author: "Annika Liu"
-date: Jan,17,2024
+date: Jan,29,2024
 ---
-## Homework 3.1
+
+# Assignment 10
+```{r male depression level graph}
+# install the necessary packages 
+library(readxl)
+library(ggplot2)
+library(dplyr)
+
+# read the mocked up data
+file_path <- "mockedupdata.xlsx"
+depression_long <- readxl::read_excel(file_path)
+
+# chose the male group and selected level_types 
+depression_long %>%
+  filter(Gender == "Male" & Level_Types == "Depression") %>%
+  ggplot(aes(x = Level_Measure)) +
+    geom_bar() +
+    theme_minimal() +
+    labs(title = "Depression Level Measure Count for Males",
+         x = "Level Measure",
+         y = "Count")
+
+```
+
+```{r female depression level graph}
+# install the necessary packages 
+library(readxl)
+library(ggplot2)
+library(dplyr)
+
+# read the mocked up data
+file_path <- "mockedupdata.xlsx"
+depression_long <- readxl::read_excel(file_path)
+
+# create male depression level graph
+male_histogram <- depression_long %>%
+  filter(Gender == "Male" & Level_Types == "Depression") %>%
+  ggplot(aes(x = Level_Measure)) +
+    geom_histogram(stat = "count", fill = "blue", color = "black") +
+    theme_minimal() +
+    labs(title = "Depression Level Measure Distribution for Male",
+         x = "Level Measure",
+         y = "Count")
+
+# creating female depression graph 
+female_histogram <- depression_long %>%
+  filter(Gender == "Female" & Level_Types == "Depression") %>%
+  ggplot(aes(x = Level_Measure)) +
+    geom_histogram(stat = "count", fill = "pink", color = "black") +
+    theme_minimal() +
+    labs(title = "Depression Level Measure Distribution for Female",
+         x = "Level Measure",
+         y = "Count")
+
+# combine the graphs together 
+# here I originally want to make them as one graph, but I think I failed to do so 
+library(gridExtra)
+grid.arrange(male_histogram, female_histogram, ncol = 2)
+
+```
+
 ```{r read my data, include=FALSE}
 # Load readr function
 library(readr)

@@ -4,7 +4,44 @@ shorttitle: "Clinical depression in Chinese adolescents"
 author: "Annika Liu"
 date: Jan,29,2024
 ---
+# Assignment 11
+```{r male depression level graph}
+# I saved depression and anxiety levels for the later study, but I think it is a good chance to maybe see the scatter polt distribution for scores for both of the gender to gain a general picture for my hypothesis writing 
+library(readxl)
+library(ggplot2)
+library(dplyr)
 
+# read the mocked up data
+file_path <- "mockedupdata.xlsx"
+depression_long <- readxl::read_excel(file_path)
+
+female_data <- depression_long %>% 
+  filter(Gender == "Female")
+
+female_data <- female_data %>%
+  group_by(Depression_Score) %>%
+  mutate(count = row_number()) %>%
+  ungroup()
+
+ggplot(female_data, aes(x = Depression_Score, y = count)) +
+  geom_jitter(width = 0.2, shape = 1) +  
+  labs(title = "Scatter Plot of Depression Score for Females", x = "Depression Score" , y = "Count") +
+  theme_minimal()
+
+# Filter out the data for males
+male_data <- depression_long %>%
+  filter(Gender == "Male") %>%
+  group_by(Depression_Score) %>%
+  mutate(count = row_number()) %>%
+  ungroup()
+
+# Create the scatter plot for males vs. depression 
+ggplot(male_data, aes(x = Depression_Score , y = count)) +
+  geom_jitter(width = 0.2, shape = 1) +  
+  labs(title = "Scatter Plot of Depression Score for Males", x = "Depression Score", y = "Count") +
+  theme_minimal()
+
+```
 # Assignment 10
 ```{r male depression level graph}
 # install the necessary packages 

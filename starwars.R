@@ -19,7 +19,6 @@ str(sw.wrangled.goal)
 ## Use the built-in starwars dataset to replicate the tibble above in a tbl called sw.wrangled
 # If you get stuck, use comments to "hold space" for where you know code needs to go to achieve a goal you're not sure how to execute
 
-
 # Start with the original starwars data frame
 starwars_df <- starwars
 
@@ -45,6 +44,120 @@ sw_wrangled <- starwars_df %>%
 
 # Print 
 print(sw_wrangled)
+
+# Assignment 12
+# Plot 1
+library(ggplot2)
+
+# Create the boxplot
+hair_color <- ggplot(sw.wrangled.goal, aes(x = hair, y = mass, fill = hair)) + 
+  geom_boxplot() + 
+  # giving each hair color colors 
+  scale_fill_manual(values = c(
+    'none' = 'red', 
+    'brown' = 'yellow',
+    'black' = 'greenyellow',
+    'bald' = 'green4',
+    'white' = 'green3',
+    'blond' = 'cyan4',
+    'auburn, white' = 'deepskyblue3',
+    'blonde' = 'purple',
+    'brown, grey' = 'orchid2',
+    'grey' = 'hotpink2'
+  )) +  
+  scale_y_continuous(limits = c(0, 160)) +
+  labs(title = "Colorful hair", x = "Hair color(s)", y = "Mass (kg)") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    legend.title = element_text(face = "bold")
+  )
+
+print(hair_color)
+
+# Plot 2
+library(ggplot2)
+
+sw.wrangled.goal <- sw.wrangled.goal %>%
+  mutate(brown_hair_presence = if_else(hair == "brown", "Has brown hair", "No brown hair"))
+
+Mass_Brown <- ggplot(sw.wrangled.goal, aes_string(x = mass, y = height_in)) +
+  # error in this step indicate "Error: object 'mass' not found", but I am sure there is a col called "mass" in sw.wrangled.goal, very confused 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE) +
+  facet_wrap(~brown_hair_presence) + 
+  labs(title = "mass vs. height by brown-hair-havingness",
+       subtitle = "A critically important analysis",
+       x = "mass",
+       y = "height_in") +
+  theme_minimal()
+
+# Print the plot
+print(Mass_Brown)
+
+# Plot 3
+library(ggplot2)
+
+sw.wrangled.goal <- sw.wrangled.goal %>%
+  mutate(species_first_letter = substr(species, 1, 1))
+
+ggplot(sw.wrangled.goal, aes(x = species_first_letter, fill = gender)) +
+  geom_bar() +
+  coord_flip() +
+  scale_fill_manual(values = c("f" = "salmon", "m" = "lightblue")) +
+  labs(
+    title = "A clear male human bias",
+    x = "count",
+    y = "species_first_letter",
+    fill = "gender"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+
+# Assignment 13
+# Please ignore, did the wrong homework
+# library all the function needed 
+library(ggplot2)
+library(ggsci)
+library(dplyr)
+library(tidyr)
+
+# turn NA value in gender into Others 
+sw.wrangled.goal <- sw.wrangled.goal %>%
+  mutate(gender = replace_na(gender, "Others"))
+
+# Define the colors for the gender categories
+gender_colors <- c("f" = "",  
+                   "m" = "",     
+                   "Others" = "")  
+
+# create the plot
+gg <- ggplot(sw.wrangled.goal, aes(x = height_cm, y = mass, color = gender)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE, aes(group = gender)) +  
+  facet_wrap(~gender, scales = "free_y") + 
+  scale_color_manual(values = gender_colors) + 
+  theme_minimal(base_family = "Arial") +  
+  theme(
+    plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
+    plot.subtitle = element_text(face = "italic", size = 16, hjust = 0.5),
+    axis.title = element_text(size = 12),
+    strip.text = element_text(face = "bold")
+  ) +
+  labs(
+    title = "Height and weight across gender presentation",
+    subtitle = "A cautionary tale in misleading \"free\" axis scales & bad design choices",
+    x = "Height (cm)",
+    y = "Mass (Kg)",
+    color = "Gender Presentation"
+  )
+
+# Print 
+print(gg)
+
+
 
 # graph height_cm
 # I feel like there is a bit different because I dont have the gaps?

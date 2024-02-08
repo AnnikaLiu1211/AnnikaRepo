@@ -45,6 +45,55 @@ sw_wrangled <- starwars_df %>%
 # Print 
 print(sw_wrangled)
 
+# Assignment 13
+# call the library
+library(ggplot2)
+library(ggsci)
+library(dplyr)
+library(tidyr)
+
+# rename
+sw.wrangled.goal <- sw.wrangled.goal %>%
+  mutate(gender = as.character(gender), 
+         gender = case_when(
+           gender == "f" ~ "female",    
+           gender == "m" ~ "male",     
+           is.na(gender) ~ "Others",    
+           TRUE ~ gender                
+         ))
+
+# define colors
+gender_colors <- c("female" = "red", "male" = "grey", "Others" = "orange")  
+
+# create the graph 
+gg <- ggplot(sw.wrangled.goal, aes(x = height_cm, y = mass, color = gender)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE, aes(group = gender)) + 
+  facet_wrap(~gender, scales = "free_y") + 
+  scale_color_manual(values = gender_colors) +  
+  theme_minimal(base_family = "Arial") + 
+  scale_x_continuous(limits = c(60, 270)) +
+  theme(
+    plot.title = element_text(face = "bold", size = 13, hjust = 0),
+    plot.subtitle = element_text(face = "italic", size = 10, hjust = 0.5),
+    axis.title = element_text(size = 12),
+    strip.text = element_text(face = "bold", family = "Arial", color = "white", hjust = 0),
+    strip.background = element_rect(color = "black", fill = "darkgreen", size = 1),
+    panel.background = element_rect(fill = "pink"),
+    legend.position = "bottom",
+  ) +
+  labs(
+    title = "Height and weight across gender presentation",
+    subtitle = "A cautionary tale in misleading \"free\" axis scales & bad design choices",
+    x = "Height (cm)",
+    y = "Mass (Kg)",
+    fill = "Gender Presentation"
+  )
+
+# print
+print(gg)
+
+
 # Assignment 12
 # Plot 1
 library(ggplot2)
@@ -115,47 +164,6 @@ ggplot(sw.wrangled.goal, aes(x = species_first_letter, fill = gender)) +
   theme(
     plot.title = element_text(hjust = 0.5)
   )
-
-# Assignment 13
-# Please ignore, did the wrong homework
-# library all the function needed 
-library(ggplot2)
-library(ggsci)
-library(dplyr)
-library(tidyr)
-
-# turn NA value in gender into Others 
-sw.wrangled.goal <- sw.wrangled.goal %>%
-  mutate(gender = replace_na(gender, "Others"))
-
-# Define the colors for the gender categories
-gender_colors <- c("f" = "",  
-                   "m" = "",     
-                   "Others" = "")  
-
-# create the plot
-gg <- ggplot(sw.wrangled.goal, aes(x = height_cm, y = mass, color = gender)) + 
-  geom_point() + 
-  geom_smooth(method = "lm", se = TRUE, aes(group = gender)) +  
-  facet_wrap(~gender, scales = "free_y") + 
-  scale_color_manual(values = gender_colors) + 
-  theme_minimal(base_family = "Arial") +  
-  theme(
-    plot.title = element_text(face = "bold", size = 20, hjust = 0.5),
-    plot.subtitle = element_text(face = "italic", size = 16, hjust = 0.5),
-    axis.title = element_text(size = 12),
-    strip.text = element_text(face = "bold")
-  ) +
-  labs(
-    title = "Height and weight across gender presentation",
-    subtitle = "A cautionary tale in misleading \"free\" axis scales & bad design choices",
-    x = "Height (cm)",
-    y = "Mass (Kg)",
-    color = "Gender Presentation"
-  )
-
-# Print 
-print(gg)
 
 
 

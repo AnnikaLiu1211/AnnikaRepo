@@ -2,9 +2,15 @@
 title: "Exploring the Manifestation of Comorbid Symptoms in Chinese Adolescents with Depression"
 shorttitle: "Clinical depression in Chinese adolescents"
 author: "Annika Liu"
-date: Feb,5,2024 
+date: Feb,7,2024 
 ---
-# Assignment 12
+#Assignment 13 (part 1) 
+# I did a screenshot, the actual file has 4 pages, just for practice tho! 
+```{r ethical-approval, fig.cap="Ethical Approval Document"}
+knitr::include_graphics("EA.png")
+```
+
+# Assignment 12 + 13(part 2)
 # I plan to create a graph checking gender difference in somatic score 
 ```{r gender vs. somatic score}
 library(ggplot2)
@@ -13,21 +19,28 @@ library(ggplot2)
 file_path <- "mockedupdata.xlsx"
 gender_somatic <- readxl::read_excel(file_path)
 
-# Create a boxplot
 GSboxplot <- ggplot(gender_somatic, aes(x = Gender, y = Symptoms_Score, fill = Gender)) +
-  geom_boxplot() +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) + 
   scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
   labs(
     title = "Gender Difference in Somatic Symptom Score",
     x = "Gender",
-    y = "Symptoms Score"
+    y = "Symptoms Score",
+    fill = "Gender"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    legend.position = "bottom",
+    legend.title.align = 0.5,
+    legend.box.background = element_rect(color = "grey80", size = 0.5), 
+    legend.background = element_rect(fill = "white", size = 0.5, linetype = "solid")
+  )
 
-# Print the boxplot
-print(GSboxplot)
-
-
+# Display the boxplot
+GSboxplot
 ```
 
 # Assignment 10 + 11 

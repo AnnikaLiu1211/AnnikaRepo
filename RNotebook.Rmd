@@ -2,16 +2,61 @@
 title: "Exploring the Manifestation of Comorbid Symptoms in Chinese Adolescents with Depression"
 shorttitle: "Clinical depression in Chinese adolescents"
 author: "Annika Liu"
-date: Feb,7,2024 
+date: Feb,12,2024 
 ---
-#Assignment 13 (part 1) 
-# I did a screenshot, the actual file has 4 pages, just for practice tho! 
-```{r ethical-approval, fig.cap="Ethical Approval Document"}
-knitr::include_graphics("EA.png")
-```
+#Plz ignore, this is my notes for Assignment 15: data analysis plans
+I wanted to compare the differences in general SDS depression scores, the differences in Somatic scores, the differences in Cognitive Impairment scores, and the differences in Feelings of Despair scores between Chinese adolescent males and females. Meanwhile, I plan to examine if there are any kinds of gender differences in depressed adolescences for the levels of depression, including mild, moderate, and severe (this is a categorical variable). 
+Descriptive Analysis: Mean and Standard deviation + Frequency analysis(the categorical variable of depression level).
+Data Analysis: 
+Chi-square tests to assess whether the distribution of depression levels differs between males and females.
+T-Tests: several different t-tests will be applied for different continuous variables. 
 
-# Assignment 12 + 13(part 2)
-# I plan to create a graph checking gender difference in somatic score 
+#Assignment 14: kable + reference 
+As seen in Table \\@ref(tab:gender-depression), the data shows the average SDS Depression Score (Mean) for females is higher. Meanwhile, the standard deviation (SD) of the Depression Scores for males is higher, indicating greater variability or dispersion in the scores among males.
+
+```{r gender.depression table}
+library(readxl)
+file_path <- "mockedupdata.xlsx"
+gender_depression <- readxl::read_excel(file_path)
+
+male_stats <- gender_depression[gender_depression$Gender == 'Male', ]
+male_mean <- mean(male_stats$Depression_Score, na.rm = TRUE)
+male_sd <- sd(male_stats$Depression_Score, na.rm = TRUE)
+
+female_stats <- gender_depression[gender_depression$Gender == 'Female', ]
+female_mean <- mean(female_stats$Depression_Score, na.rm = TRUE)
+female_sd <- sd(female_stats$Depression_Score, na.rm = TRUE)
+
+cat("Male Depression Score: Mean =", male_mean, ", SD =", male_sd, "\n")
+cat("Female Depression Score: Mean =", female_mean, ", SD =", female_sd)
+
+#Male Depression Score: Mean = 71.84298 , SD = 9.518432 
+#Female Depression Score: Mean = 75.38991 , SD = 9.010699
+
+library(dplyr)
+library(magrittr)
+library(knitr)
+
+depression_scores <- data.frame(
+  Gender = c("Male", "Female"),
+  Mean = c(71.84, 75.39),
+  SD = c(9.52, 9.01)
+)
+
+kable(depression_scores, 
+      col.names = c("Gender", "Mean", "Standard Deviation"), 
+      caption = "SDS Depression Scores by Gender", 
+      format = "html",
+      digits = 2, 
+      booktabs = TRUE,
+      align = c('l', 'c', 'c'),
+      row.names = FALSE,
+      escape = TRUE) 
+# I am try to adding color, but it appears as function cant not be found 
+```
+Based on this preliminary distribution, it might be suggested that adolescent females experience more severe levels of depression, as indicated by the higher average SDS Depression Score. 
+
+As seen in Figure 1\\@ref(fig:gender-somatic), female (pink) had a higher somatic score than male (blue).
 ```{r gender vs. somatic score}
 library(ggplot2)
 
@@ -19,7 +64,7 @@ library(ggplot2)
 file_path <- "mockedupdata.xlsx"
 gender_somatic <- readxl::read_excel(file_path)
 
-GSboxplot <- ggplot(gender_somatic, aes(x = Gender, y = Symptoms_Score, fill = Gender)) +
+gender_somatic_graph <- ggplot(gender_somatic, aes(x = Gender, y = Symptoms_Score, fill = Gender)) +
   geom_boxplot(outlier.color = "red", outlier.shape = 8) + 
   scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
   labs(
@@ -40,7 +85,46 @@ GSboxplot <- ggplot(gender_somatic, aes(x = Gender, y = Symptoms_Score, fill = G
   )
 
 # Display the boxplot
-GSboxplot
+gender_somatic_graph
+```
+The distribution might indicades gender differences in this depression symptoms.
+#Assignment 13 (part 1) 
+# I did a screenshot, the actual file has 4 pages, just for practice tho! 
+```{r ethical-approval, fig.cap="Ethical Approval Document"}
+knitr::include_graphics("EA.png")
+```
+
+# Assignment 12 + 13(part 2)
+# I plan to create a graph checking gender difference in somatic score 
+```{r gender vs. somatic score}
+library(ggplot2)
+
+# Assuming you have a data frame 'df' with columns 'Symptoms_Score' and 'Gender'
+file_path <- "mockedupdata.xlsx"
+gender_somatic <- readxl::read_excel(file_path)
+
+gender_somatic_graph <- ggplot(gender_somatic, aes(x = Gender, y = Symptoms_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) + 
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
+  labs(
+    title = "Gender Difference in Somatic Symptom Score",
+    x = "Gender",
+    y = "Symptoms Score",
+    fill = "Gender"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    legend.position = "bottom",
+    legend.title.align = 0.5,
+    legend.box.background = element_rect(color = "grey80", size = 0.5), 
+    legend.background = element_rect(fill = "white", size = 0.5, linetype = "solid")
+  )
+
+# Display the boxplot
+gender_somatic_graph
 ```
 
 # Assignment 10 + 11 

@@ -1,15 +1,74 @@
 ---
-title: "Exploring the Manifestation of Comorbid Symptoms in Chinese Adolescents with Depression"
-shorttitle: "Clinical depression in Chinese adolescents"
+title: Exploring the Gender Difference in Depression Severity and Symptoms in Chinese
+  Adolescents
 author: "Annika Liu"
-date: Feb,12,2024 
+date: "Feb,12,2024"
+output: pdf_document
+shorttitle: Clinical depression in Chinese adolescents
 ---
-#Plz ignore, this is my notes for Assignment 15: data analysis plans
+# Assignment 15: data analysis plans
 I wanted to compare the differences in general SDS depression scores, the differences in Somatic scores, the differences in Cognitive Impairment scores, and the differences in Feelings of Despair scores between Chinese adolescent males and females. Meanwhile, I plan to examine if there are any kinds of gender differences in depressed adolescences for the levels of depression, including mild, moderate, and severe (this is a categorical variable). 
 Descriptive Analysis: Mean and Standard deviation + Frequency analysis(the categorical variable of depression level).
 Data Analysis: 
 Chi-square tests to assess whether the distribution of depression levels differs between males and females.
-T-Tests: several different t-tests will be applied for different continuous variables. 
+Linear regression will be apply to test gender difference between different score types(including self-reported depression scores, somatic scores, cognitive impairment scores, and feelings of despair scores). Then an ANOVA test will be used to check 
+
+# Assignment 16
+# descriptive testing 
+```{r depression descriptive}
+file_path <- "Depressioncopy.xlsx"
+Destription <- readxl::read_excel(file_path)
+
+Destription$Somatic_Score <- as.numeric(Destription$Somatic_Score)
+Destription$Cognitive_Impairment_Score <- as.numeric(Destription$Cognitive_Impairment_Score)
+Destription$Feelings_of_Despair_Score <- as.numeric(Destription$Feelings_of_Despair_Score)
+Destription$Depression_Score <- as.numeric(Destription$Depression_Score)
+
+male_stats <- gender_depression[gender_depression$Gender == 'Male', ]
+
+male_mean <- mean(male_stats$Depression_Score, na.rm = TRUE)
+male_sd <- sd(male_stats$Depression_Score, na.rm = TRUE)
+
+male_mean_somatic <- mean(male_stats$Somatic_Score, na.rm = TRUE)
+male_sd_somatic <- sd(male_stats$Somatic_Score, na.rm = TRUE)
+
+male_mean_cognitive <- mean(male_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+male_sd_cognitive <- sd(male_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+
+male_mean_despair <- mean(male_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+male_sd_despair <- sd(male_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+
+female_stats <- gender_depression[gender_depression$Gender == 'Female', ]
+
+female_mean <- mean(female_stats$Depression_Score, na.rm = TRUE)
+female_sd <- sd(female_stats$Depression_Score, na.rm = TRUE)
+
+female_mean_somatic <- mean(female_stats$Somatic_Score, na.rm = TRUE)
+female_sd_somatic <- sd(female_stats$Somatic_Score, na.rm = TRUE)
+
+female_mean_cognitive <- mean(female_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+female_sd_cognitive <- sd(female_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+
+female_mean_despair <- mean(female_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+female_sd_despair <- sd(female_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+
+print(paste("Male Depression Score Mean:", male_mean))
+print(paste("Male Depression Score SD:", male_sd))
+print(paste("Male Somatic Score Mean:", male_mean_somatic))
+print(paste("Male Somatic Score SD:", male_sd_somatic))
+print(paste("Female Depression Score Mean:", female_mean))
+print(paste("Female Depression Score SD:", female_sd))
+print(paste("Female Somatic Score Mean:", female_mean_somatic))
+print(paste("Female Somatic Score SD:", female_sd_somatic))
+```
+# basic hypothesis testing--linear regression + R
+```{r gender difference on score_types}
+file_path <- "mockupdata2.xlsx"
+AdoleSdepression <- readxl::read_excel(file_path)
+
+model1 <- lm(Values ~ Score_Types*Gender+Age, data = AdoleSdepression)
+anova(model1)
+```
 
 #Assignment 14: kable + reference 
 As seen in Table \\@ref(tab:gender-depression), the data shows the average SDS Depression Score (Mean) for females is higher. Meanwhile, the standard deviation (SD) of the Depression Scores for males is higher, indicating greater variability or dispersion in the scores among males.

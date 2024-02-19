@@ -1,11 +1,152 @@
 ---
-title: Exploring the Gender Difference in Depression Severity and Symptoms in Chinese
-  Adolescents
+title: Exploring the Gender Difference in Depression Severity and Symptoms in Chinese Adolescents
 author: "Annika Liu"
-date: "Feb,12,2024"
-output: pdf_document
+date: "Feb,19,2024"
 shorttitle: Clinical depression in Chinese adolescents
 ---
+# Assignment 17 ：inline-code
+```{r depression descriptive}
+file_path <- "Depressioncopy.xlsx"
+Destription <- readxl::read_excel(file_path)
+
+Destription$Somatic_Score <- as.numeric(Destription$Somatic_Score)
+Destription$Cognitive_Impairment_Score <- as.numeric(Destription$Cognitive_Impairment_Score)
+Destription$Feelings_of_Despair_Score <- as.numeric(Destription$Feelings_of_Despair_Score)
+Destription$Depression_Score <- as.numeric(Destription$Depression_Score)
+
+male_stats <- gender_depression[gender_depression$Gender == 'Male', ]
+
+male_mean <- mean(male_stats$Depression_Score, na.rm = TRUE)
+male_sd <- sd(male_stats$Depression_Score, na.rm = TRUE)
+
+male_mean_somatic <- mean(male_stats$Somatic_Score, na.rm = TRUE)
+male_sd_somatic <- sd(male_stats$Somatic_Score, na.rm = TRUE)
+
+male_mean_cognitive <- mean(male_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+male_sd_cognitive <- sd(male_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+
+male_mean_despair <- mean(male_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+male_sd_despair <- sd(male_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+
+female_stats <- gender_depression[gender_depression$Gender == 'Female', ]
+
+female_mean <- mean(female_stats$Depression_Score, na.rm = TRUE)
+female_sd <- sd(female_stats$Depression_Score, na.rm = TRUE)
+
+female_mean_somatic <- mean(female_stats$Somatic_Score, na.rm = TRUE)
+female_sd_somatic <- sd(female_stats$Somatic_Score, na.rm = TRUE)
+
+female_mean_cognitive <- mean(female_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+female_sd_cognitive <- sd(female_stats$Cognitive_Impairment_Score, na.rm = TRUE)
+
+female_mean_despair <- mean(female_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+female_sd_despair <- sd(female_stats$Feelings_of_Despair_Score, na.rm = TRUE)
+```
+# male descriptive data
+  - The standard deviation of the depression score for males is 'r male_sd' and the mean is 'r male_mean'.
+  - The standard deviation of the somatic score for males is 'r male_sd_somatic' and the mean is 'r male_mean_somatic'.
+  - The standard deviation of the cognitive impairment score for males is 'r male_sd_cognitive' and the mean is 'r male_mean_cognitive'.
+  - The standard deviation of the feelings of despair score for males is 'r male_sd_despair' and the mean is 'r male_mean_despair'.
+
+# female descriptive data
+  - The standard deviation of the depression score for females is 'r female_sd' and the mean is 'r female_mean'.
+  - The standard deviation of the somatic score for females is 'r female_sd_somatic' and the mean is 'r female_mean_somatic'.
+  - The standard deviation of the cognitive impairment score for females is 'r female_sd_cognitive' and the mean is 'r female_mean_cognitive'.
+  - The standard deviation of the feelings of despair score for females is 'r female_sd_despair' and the mean is 'r female_mean_despair'.
+  
+# visualized distription  
+(ref:bar-genderdepression) Bar graph of gender distributions of depression levels 
+```{r gender_depression_bar, fig.cap="(ref:bar-genderdepression)"}
+library(writexl)
+library(dplyr) 
+library(readxl)
+library(tidyr)
+library(stringr)
+
+# read the original data
+file_path <- "Depressioncopy.xlsx"
+Depression.data <- readxl::read_excel(file_path)
+
+library(ggplot2)
+
+gender_depression_bar <- ggplot(Depression.data, aes(x = Depression_Level, fill = Gender)) +
+  geom_bar(position = "dodge") +
+  geom_text(stat = 'count', aes(label = ..count..), vjust = 0.5, position = position_dodge(width = 0.9),size = 3) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
+  labs(title = "Bar Graph of Depression Level by Gender",
+       x = "Depression Level",
+       y = "Count") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+print(gender_depression_bar)
+```
+
+(ref:box-genderscore) Boxplot of gender distributions for four types of scores 
+```{r score_gender_boxplot，fig.cap="(ref:box-genderscore)}
+library(writexl)
+library(dplyr) 
+library(readxl)
+library(tidyr)
+library(stringr)
+library(patchwork)
+
+# read the original data
+file_path <- "Depressioncopy.xlsx"
+Depression.data <- readxl::read_excel(file_path)
+
+# depression_score 
+p1 <- ggplot(Depression.data, aes(x = Gender, y = Depression_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
+  stat_summary(fun = mean, geom = "point", aes(shape = "Mean"), size = 3, color = "darkred", show.legend = TRUE) +
+  labs(y = "Depression Score") +
+  theme_minimal()
+  theme(axis.title.x = element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1, size = 10))
+
+
+#  'Somatic_Score' 
+p2 <- ggplot(Depression.data, aes(x = Gender, y = Somatic_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
+  stat_summary(fun = mean, geom = "point", aes(shape = "Mean"), size = 3, color = "darkred", show.legend = TRUE) +
+  labs(y = "Somatic Score") +
+  theme_minimal()
+  theme(axis.title.x = element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1, size = 10))
+
+#  'Cognitive_Impairment_Score' 
+p3 <- ggplot(Depression.data, aes(x = Gender, y = Cognitive_Impairment_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
+  stat_summary(fun = mean, geom = "point", aes(shape = "Mean"), size = 3, color = "darkred", show.legend = TRUE) +
+  labs(y = "Cognitive Impairment Score") +
+  theme_minimal()
+  theme(axis.title.x = element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1, size = 10))
+  
+# 'Feelings_of_Despair_Score' 
+p4 <- ggplot(Depression.data, aes(x = Gender, y = Feelings_of_Despair_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +
+  stat_summary(fun = mean, geom = "point", aes(shape = "Mean"), size = 3, color = "darkred", show.legend = TRUE) +
+  labs(y = "Feelings of Despair Score") +
+  theme_minimal()
+  theme(axis.title.x = element_blank(), axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 45, hjust = 1, size = 10))
+
+combined_boxplot <- {
+  (p1 | p2 | p3 | p4) + 
+  plot_layout(guides = 'collect') & 
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold", lineheight = 0.8),
+    strip.text.x = element_text(size = 10, margin = margin(0, 0, 10, 0)),
+    legend.title.align = 0.5
+  )
+} & plot_annotation(title = "Scores by Gender")
+
+print(combined_boxplot)
+```
+# I've already included 5 in-line codes. I am trying to due with the tests' results, and I originally I want to includes them as assignment 17. But I changed my mind that I will go to OH on Tuesday to check if the ones I am palnning to run are the best way to do so. Thank you~
+
 # Assignment 15: data analysis plans
 I wanted to compare the differences in general SDS depression scores, the differences in Somatic scores, the differences in Cognitive Impairment scores, and the differences in Feelings of Despair scores between Chinese adolescent males and females. Meanwhile, I plan to examine if there are any kinds of gender differences in depressed adolescences for the levels of depression, including mild, moderate, and severe (this is a categorical variable). 
 Descriptive Analysis: Mean and Standard deviation + Frequency analysis(the categorical variable of depression level).
@@ -66,7 +207,7 @@ print(paste("Female Somatic Score SD:", female_sd_somatic))
 file_path <- "mockupdata2.xlsx"
 AdoleSdepression <- readxl::read_excel(file_path)
 
-model1 <- lm(Values ~ Score_Types*Gender+Age, data = AdoleSdepression)
+model1 <- lm(Values ~ Score_Types * Gender, data = AdoleSdepression)
 anova(model1)
 ```
 

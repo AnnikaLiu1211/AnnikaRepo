@@ -1,0 +1,31 @@
+---
+title: Exploring the Gender Difference in Depression Severity and Symptoms in Chinese
+  Adolescents
+author: "Annika Liu"
+date: "Feb 21, 2024"
+output:
+  pdf_document: default
+  papaja::apa6_pdf:
+    keep_tex: true
+shorttitle: Clinical depression in Chinese adolescents
+bibliography: referencelibary.bib
+---
+# Assignment 18, successfully knitting!!
+...
+bibliography:
+...
+---
+```{r set up, include = FALSE}
+library("papaja")
+r_refs("referencelibary.bib")
+```
+We used 'r cite_r'("r-references.bib")' for all our analysis. 
+
+Depression is the principal cause of illness and disability in the world. The World Health Organization (WHO) has been issuing warnings about this pathology for years, given that it affects over 300 million people all over the world[@WHO_Depression_2017]. Meanwhile, depression is highly prevalent in adolescence, with conservative estimates suggesting up to 12.5% of 12- to 17-year-olds experience symptoms of a major depressive episode in 12 months [@NIMH_Depression_2023]. 
+According to WHO, adolescence ranges from 10 to 19 years old is an important developmental period marked by formative biological and social transition [@blakemore_is_2014]. Experiencing depression or any kind of mental health struggle during this period can disrupt these essential processes, which ultimately can affect an individual’s long-term socioeconomic standing and peer, familial, and romantic relationships, causing but not limited to failure to complete secondary school, unemployment, and pregnancy/parenthood [@clayborne_systematic_2019]. 
+
+The HAM-D(Hamilton Depression Rating Scale) will be used in this study[@hamilton_rating_1960], with seven factors including somatization(or Anxiety somatization), weight change, cognitive impairment, diurnal variation, retardation, sleep disturbance, as well as feelings of despair[@sun_reliability_2017]
+
+Bibliography/References Sections:
+:::{#ref custom-style="Bibliography"}
+

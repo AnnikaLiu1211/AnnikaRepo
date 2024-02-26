@@ -1,0 +1,76 @@
+---
+title             : "Exploring the Gender Difference in Depression Severity and Symptoms in Chinese Adolescents"
+shorttitle        : "Clinical depression in Chinese adolescents"
+
+author: 
+  - name          : "Annika Liu"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+    role: # Contributorship roles (e.g., CRediT, https://credit.niso.org/)
+      - "Conceptualization"
+      - "Writing - Original Draft Preparation"
+      - "Writing - Review & Editing"
+  - name          : "Xiwang Fan"
+    affiliation   : "2"
+    role:
+      - "Supervision"
+
+authornote: |
+  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+
+  Enter author note here.
+
+abstract: |
+  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
+  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
+  One sentence clearly stating the **general problem** being addressed by  this particular study.
+  One sentence summarizing the main result (with the words "**here we show**" or their equivalent).
+  Two or three sentences explaining what the **main result** reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.
+  One or two sentences to put the results into a more **general context**.
+  Two or three sentences to provide a **broader perspective**, readily comprehensible to a scientist in any discipline.
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : "2.26references.bib"
+
+floatsintext      : no
+linenumbers       : yes
+draft             : no
+mask              : no
+
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r set up, include = FALSE}
+library("papaja")
+r_refs("2.26references.bib")
+```
+
+Being anble to knit, but the chapter citation appears strange
+# Introducation
+  Depression is the principal cause of illness and disability in the world. The World Health Organization (WHO) has been issuing warnings about this pathology for years, given that it affects over 300 million people all over the world[@WHO_Depression_2017]. Meanwhile, depression is highly prevalent in adolescence [@NIMH_Depression_2023].According to WHO, adolescence ranges from 10 to 19 years old is an important developmental period marked by formative biological and social transition [@blakemore_is_2014]. Experiencing depression or any kind of mental health struggle during this period can disrupt these essential processes, which ultimately can affect an individual’s long-term socioeconomic standing and peer, familial, and romantic relationships, causing but not limited to failure to complete secondary school, unemployment, and pregnancy/parenthood [@clayborne_systematic_2019]. Researchers indicated that considering the high rates of depressed mood, depressive syndromes, and depressive disorders that occur during adolescence, treatment and research efforts will never be sufficient to meet the full needs of the population [@petersen_depression_2009, Ch.1].
+  Chinese adolescents' mental health has received attention from scholars in recent years. Studies have shown that adolescents in China experience emotional disturbances, including depression, at levels equal to or greater than their American peers [@hesketh_anxiety_2005]. @quach_effects_2015 analyzed in their research that this may be due to the society's emphasis on academic achievement and its close association with financial success and social status. The current research focuses on a more detailed analysis of adolescent depression symptoms. The hope is to raise awareness among more people, including governments, educational institutions, and parents, about these issues within the context of a high-pressure culture. This should contribute to more targeted solutions for Chinese adolescents.
+  Notable gender differences in terms of both depression prevalence and clinical symptoms were found, highlighting women were approximately twice as likely as men to suffer from this mental disorder[@jung_association_2019;@nolen-hoeksema_gender_2001]. Similar findings have been discovered in research focused on adolescents, revealing that adolescent females are also exposed to a greater vulnerability to depression[@lewis_gender_2015]. Specifically, Sun and his colleagues in a study targeting Chinese adolescents indicated that female adolescents in China exhibit a higher prevalence and severity of depressive symptoms, such as insomnia [@sun_more_2023]. This study will examine and analyze whether gender differences in other depressive symptoms exhibit the same phenomenon, building on the basis of previous research.
+  
+# Method
+## Measures
+  The 24-items Chinese version HAM-D(Hamilton Depression Rating Scale) will be used in this study[@hamilton_rating_1960], with seven factors including somatization(or anxiety somatization), weight change, cognitive impairment, diurnal variation, retardation, sleep disturbance, as well as feelings of despair(or hopelessness)[@sun_reliability_2017;@sun_more_2023]. 
+## Participants
+  Participants were recruited between March 2021 and June 2023 from the Mental Health Center of Tongji University Psychological Assessment and Research Center in Shanghai. They underwent structured psychiatric interviews administered by trained psychiatrists at the health center, who utilized the formally translated Chinese version of the 24-item Hamilton depression rating scale (HAMD-24)[@hamilton_rating_1960]. These standardized assessment tools are widely recognized and accepted within the professional field. Eligible participants had to satisfy the following inclusionary criteria: (1) adolecents age between 10 and 19 years old; (2) HAMD-24 score bigger or equal to 8. A total of 577 adolescent participants were included. There were no exclusion criteria. The terms 'Male' and 'Female' are employed to denote the binary sexes of participants, referring to the biological attributes assigned at birth based on physical anatomy and physiological characteristics [@heidari_sex_2016] The Institutional Review Board (Medical Ethics Committee of Shanghai Pudong New Area Mental Health Center) approved the study (Ethical approval number: [2022] Review No. (011), Trial registry name: Auxiliary diagnosis model of adolescent depression based on multimodal data, Clinical trial registration identification number: ChiCTR2300070007, Registration date: 2023/1/17, URL for the registry: https://www.chictr.org.cn/showprojEN.html?proj=191048). Written informed consent was obtained from patients or their legal parents before participating in the study.
+
+
+\newpage
+
+# Reference
+:::{#ref custom-style="Bibliography"}
+:::

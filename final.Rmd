@@ -27,8 +27,8 @@ abstract: |
 
   <!-- https://tinyurl.com/ybremelq -->
   
-keywords          : "keywords"
-wordcount         : "X"
+keywords          : "Depression; Mental Health"
+wordcount         : "2571"
 
 bibliography      : "finalreference.bib"
 
@@ -86,12 +86,11 @@ r_refs("finalreference.bib")
   This study, as part of a large-scale investigation into adolescent depression in China, aims to explore the manifestation of gender differences in the severity of depression and three specific depressive symptoms. It hopes to contribute to a more comprehensive understanding of this condition within the cultural and regional context of China and to propose more gender-targeted treatment approaches in the field of clinical psychology.
   
 # Method
-
 ## Participants
   Participants were recruited between March 2021 and June 2023 from the Mental Health Center of Tongji University Psychological Assessment and Research Center in Shanghai. They underwent structured psychiatric interviews administered by trained psychiatrists at the health center, who utilized the formally translated Chinese version of the 24-item Hamilton depression rating scale (HAMD-24)[@hamilton_rating_1960]. This standardized assessment tool is widely recognized and accepted within the professional field. Eligible participants for this study specifically had to satisfy the following inclusionary criteria: (1) adolescents aged between 10 and 19 years old; (2) HAMD-24 score bigger or equal to 8. A total of 577 adolescent participants were included (Female = 436; Male = 141). There were no exclusion criteria. The terms 'Male' and 'Female' are employed to denote the binary sexes of participants, referring to the biological attributes assigned at birth based on physical anatomy and physiological characteristics [@heidari_sex_2016] The Institutional Review Board (Medical Ethics Committee of Shanghai Pudong New Area Mental Health Center) approved the study (Ethical approval number: [2022] Review No. (011), Trial registry name: Auxiliary diagnosis model of adolescent depression based on multimodal data, Clinical trial registration identification number: ChiCTR2300070007, Registration date: 2023/1/17, URL for the registry: https://www.chictr.org.cn/showprojEN.html?proj=191048). Written informed consent was obtained from patients or their legal parents before participating in the study.  
   
 ## Measures
-  n the current study, we employed the 24-item Chinese version of the Hamilton Depression Rating Scale (HAM-D) [@hamilton_rating_1960]. This version includes seven symptom factors critical for our research focus: somatization/anxiety, weight change, cognitive impairment, diurnal variation, retardation, sleep disturbance, and hopelessness [@sun_more_2023]. The HAM-D uses a five-level scoring method ranging from 0 to 4 points, with each level defined as (0) none; (1) mild; (2) moderate; (3) severe; (4) very severe. Additionally, a few items employ a three-level scoring method from 0 to 2 points, categorized as (0) none; (1) mild to moderate; (2) severe.
+  In the current study, we employed the 24-item Chinese version of the Hamilton Depression Rating Scale (HAM-D) [@hamilton_rating_1960]. This version includes seven symptom factors critical for our research focus: somatization/anxiety, weight change, cognitive impairment, diurnal variation, retardation, sleep disturbance, and hopelessness [@sun_more_2023]. The HAM-D uses a five-level scoring method ranging from 0 to 4 points, with each level defined as (0) none; (1) mild; (2) moderate; (3) severe; (4) very severe. Additionally, a few items employ a three-level scoring method from 0 to 2 points, categorized as (0) none; (1) mild to moderate; (2) severe.
 
   Our study’s depression score is derived from the total HAM-D score, which adds up the scores for all items, while a higher score represents higher depression severity. A score exceeding 35 points suggests severe depression, while a score above 20 points indicates mild to moderate depression. Conversely, a score below 8 points likely denotes the absence of depression symptoms[@hamilton_rating_1960]. We specifically focused on three symptom factors in our analysis: somatization/anxiety, cognitive impairment, and hopelessness.
 
@@ -272,7 +271,7 @@ apa_table(t_test_results,
 
 ```
 
-  The t-tests were conducted to assess the gender differences in depression scores and three symptoms' scores. The results indicated that females had higher mean scores compared to males in all categories. Specificly, females reported significantly higher levels of depression, showing by the tatal HAM-D depression score, than males, t( `r round(t_tests[['Depression Score']]$parameter, digits = 2)`) = `r round(t_tests[['Depression Score']]$statistic, digits = 2)`, p `r t_test_results$p.value[1]`.
+  The t-tests were conducted to assess the gender differences in depression scores and three symptoms' scores. The results indicated that females had higher mean scores compared to males in all categories, aligning with Table \@ref(tab:table-mean-gender). Specificly, females reported significantly higher levels of depression, showing by the tatal HAM-D depression score, than males, t( `r round(t_tests[['Depression Score']]$parameter, digits = 2)`) = `r round(t_tests[['Depression Score']]$statistic, digits = 2)`, p `r t_test_results$p.value[1]`.
   Meanwhile, Cognitive impairment scores were significantly higher for females(t(`r round(t_tests[['Cognitive Impairment Score']]$parameter, digits = 2)`) = `r round(t_tests[['Cognitive Impairment Score']]$statistic, digits = 2)`, p `r t_test_results$p.value[3]`). Also, a significant difference in hopelessness scores was also found, where (t(`r round(t_tests[['Hopelessness Score']]$parameter, digits = 2)`) = `r round(t_tests[['Hopelessness Score']]$statistic, digits = 2)`, p `r t_test_results$p.value[4]`), with females experiencing higher levels of hopelessness." 
   However, the trend for higher somatization/anxiety in females was noted, but the result of t-test was not statistically significant, where (t(`r round(t_tests[['Somatization/Anxiety Score']]$parameter, digits = 2)`) = `r round(t_tests[['Somatization/Anxiety Score']]$statistic, digits = 2)`, p = `r t_tests[['Somatization/Anxiety Score']]$p.value`), greater than .05 (see Table \@ref(tab:ttest-scores-gender)). 
 

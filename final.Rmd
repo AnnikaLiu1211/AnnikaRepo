@@ -11,7 +11,7 @@ author:
     role: # Contributorship roles (e.g., CRediT, https://credit.niso.org/)
       - "Conceptualization"
       - "Writing - Original Draft Preparation"
-      - "Writing - Review & Editing"
+      - "Writing - Review & Editing" 
   - name          : "Xiwang Fan"
     affiliation   : "2"
     role: 
@@ -44,9 +44,14 @@ footnotelist      : no
 classoption       : "man"
 output            : papaja::apa6_pdf
 ---
+```{r require, include = FALSE}
+chooseCRANmirror(ind=65)
+library(Require)
+Require(c("car","writexl","dplyr","readxl","patchwork","ggplot2","rmarkdown","stringr"))
+```
 
 ```{r set up, include = FALSE}
-library("papaja")
+library(papaja)
 library(tidyverse)
 library(car)
 library(writexl)
@@ -81,6 +86,7 @@ r_refs("finalreference.bib")
   This study, as part of a large-scale investigation into adolescent depression in China, aims to explore the manifestation of gender differences in the severity of depression and three specific depressive symptoms. It hopes to contribute to a more comprehensive understanding of this condition within the cultural and regional context of China and to propose more gender-targeted treatment approaches in the field of clinical psychology.
   
 # Method
+
 ## Participants
   Participants were recruited between March 2021 and June 2023 from the Mental Health Center of Tongji University Psychological Assessment and Research Center in Shanghai. They underwent structured psychiatric interviews administered by trained psychiatrists at the health center, who utilized the formally translated Chinese version of the 24-item Hamilton depression rating scale (HAMD-24)[@hamilton_rating_1960]. This standardized assessment tool is widely recognized and accepted within the professional field. Eligible participants for this study specifically had to satisfy the following inclusionary criteria: (1) adolescents aged between 10 and 19 years old; (2) HAMD-24 score bigger or equal to 8. A total of 577 adolescent participants were included (Female = 436; Male = 141). There were no exclusion criteria. The terms 'Male' and 'Female' are employed to denote the binary sexes of participants, referring to the biological attributes assigned at birth based on physical anatomy and physiological characteristics [@heidari_sex_2016] The Institutional Review Board (Medical Ethics Committee of Shanghai Pudong New Area Mental Health Center) approved the study (Ethical approval number: [2022] Review No. (011), Trial registry name: Auxiliary diagnosis model of adolescent depression based on multimodal data, Clinical trial registration identification number: ChiCTR2300070007, Registration date: 2023/1/17, URL for the registry: https://www.chictr.org.cn/showprojEN.html?proj=191048). Written informed consent was obtained from patients or their legal parents before participating in the study.  
   
@@ -101,7 +107,6 @@ r_refs("finalreference.bib")
   
   As shown in Figure \@ref(fig:boxplot-score-gender), the graph presents a comparative analysis of scores by gender, specifically separating male and female participants. It features four different box plots, representing the total HAM-D depression score and three contributing component symptoms scores.From the Figure, we can observe that female adolescent depression patients have higher median and mean scores than their male counterparts in the total score, cognitive impairment score, and hopelessness score. In the case of the somatization/anxiety Score score, male and female patients have relatively close median scores, but the mean score for females is still higher than that for males.
   
-   
 ```{r gender-depression-bar, echo=FALSE, fig.cap="Bar Graph of Depression Level by Gender"}
 file_path <- "ADepression.xlsx"
 Depression.data <- readxl::read_excel(file_path)
@@ -234,7 +239,6 @@ apa_table(regression_model,
 ```
 
   The regression analysis was performed to examine the impact of gender on depression scores. As Table \@ref(tab:regression-depression-gender) indicates, there was a statistically significant difference in depression scores by gender, with males showing lower depression scores compared to females (\( \beta \) = `r round(regression_model$estimate[2], 2)`, t = `r round(regression_model$statistic[2], 2)`, p `r regression_model$p.value[regression_model$term == "GenderMale"]`).
-
   
 ```{r ttest-scores-gender, echo=FALSE, results='asis'}
 t_tests <- list(

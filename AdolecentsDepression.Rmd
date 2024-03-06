@@ -26,7 +26,7 @@ abstract: |
   <!-- https://tinyurl.com/ybremelq -->
   
 keywords          : "Depression; Mental Health; Adolescents"
-wordcount         : "2689"
+wordcount         : "2691"
 
 bibliography      : "finalreference.bib"
 
@@ -66,8 +66,9 @@ r_refs("finalreference.bib")
 ```
 
 # Introducation
-  Depression is the one of the principal causes of illness and disability in the world [@NIMH_Depression_2023]. The World Health Organization (WHO) has long been raising alarms about this medical condition, considering it impacts more than 300 million individuals globally [@WHO_Depression_2017]. Meanwhile, depression is highly prevalent in adolescence [@NIMH_Depression_2023]. According to WHO's definition, adolescents are the individuals aged from 10 to 19 years old [@WHO_Adolecents_2021]. Adolescence is an important developmental period marked by formative biological and social transition [@blakemore_is_2014]. Experiencing depression or any kind of mental health struggle during this period can disrupt these essential processes, which ultimately can affect an individual’s long-term socioeconomic standing and social relationships, causing but not limited to failure to complete secondary school, unemployment, and pregnancy/parenthood [@clayborne_systematic_2019]. Researchers indicated that considering the high rates of depressed mood, depressive syndromes, and depressive disorders that occur during adolescence, treatment and research efforts will never be sufficient to meet the full needs of the population [@nolen2013handbook].
-  
+
+  Depression is one of the principal causes of illness and disability in the world [@NIMH_Depression_2023]. The World Health Organization (WHO) has long been raising alarms about this medical condition, considering it impacts more than 300 million individuals globally [@WHO_Depression_2017]. Meanwhile, depression is highly prevalent in adolescents aged from 10 to 19 years old, which is defined by the World Health Organization [@NIMH_Depression_2023; @WHO_Adolecents_2021]. Furthermore, adolescence is an important developmental period marked by formative biological and social transition [@blakemore_is_2014]. Experiencing depression or any kind of mental health struggle during this period can disrupt these essential processes, which ultimately can affect an individual’s long-term socioeconomic standing and social relationships, causing but not limited to failure to complete secondary school, unemployment, and pregnancy/parenthood [@clayborne_systematic_2019]. Therefore, researchers indicated that considering the high rates of depressed mood, depressive syndromes, and depressive disorders that occur during adolescence, treatment, and research efforts will never be sufficient to meet the full needs of the population [@nolen2013handbook].
+
   Chinese adolescents' mental health has received attention from scholars in recent years. Studies have shown that adolescents in China experience emotional disturbances, including depression, at levels equal to or greater than their American peers [@hesketh_anxiety_2005]. @quach_effects_2015 analyzed in their research that this could stem from the societal focus on academic success and its strong link to financial prosperity and social standing.
   
   Notable gender differences in terms of both depression prevalence and clinical symptoms were found, highlighting women were approximately twice as likely as men to suffer from this mental disorder[@jung_association_2019;@nolen1990sex]. Similar findings have been discovered in research focused on adolescents, revealing that adolescent females are also exposed to a greater vulnerability to depression[@lewis_gender_2015]. Specifically, @sun_more_2023 in their study with sample of Chinese adolescents indicated that female adolescents in China exhibit a higher prevalence and severity of depressive symptoms, such as insomnia. 

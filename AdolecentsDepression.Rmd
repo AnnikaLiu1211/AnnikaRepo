@@ -1,0 +1,291 @@
+---
+title             : "Exploring the Gender Difference in Depression Severity and Depressive Symptoms in Chinese Adolescents"
+shorttitle        : "Depression in Chinese Adolescents"
+
+author: 
+  - name          : "Annika Liu"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "5801 S Ellis Ave, Chicago, IL 60637"
+    email         : "xliu13@uchicago.edu"
+    role: # Contributorship roles (e.g., CRediT, https://credit.niso.org/)
+      - "Conceptualization"
+      - "Writing - Original Draft Preparation"
+      - "Writing - Review & Editing" 
+  - name          : "Xiwang Fan"
+    affiliation   : "2"
+    role: 
+      - "Supervision" 
+
+authornote: |
+  Annika Liu, Grad Student in the University of Chicago, Social Sciences Division, Psychology Concentrition; Research Coordinator of Shanghai Pudong New Area Mental Health Center
+
+abstract: |
+  Chinese adolescents' mental health has received attention from scholars in recent years. This study encompasses an analysis of 577 eligible Chinese depression adolescents aged 10 to 19 years, examining gender differences in depression severity and in three depressive symptom factors: somatization/anxiety, cognitive impairment, and hopelessness. The Chinese version of HAMD-24 is used. A linear regression analysis is performed to show the general picture and explore gender differences in overall depression scores. Furthermore, four t-tests were employed to identify gender differences in the total depression score, as well as examine the gender role in each of the three symptom factors. The results indicate that among Chinese adolescents with depression, females exhibit greater depression severity and more intense symptoms of cognitive impairment and hopelessness than their male counterparts. The objective of this report is to make a substantial contribution to our broader ongoing research on adolescent depression in China while deepening insights into the gender-based variations in these conditions and informing clinical approaches.
+
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "Depression; Mental Health; Adolescents"
+wordcount         : "2673"
+
+bibliography      : "finalreference.bib"
+
+floatsintext      : yes
+linenumbers       : no
+draft             : no
+mask              : no
+
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+```{r require, include = FALSE}
+chooseCRANmirror(ind=65)
+library(Require)
+Require(c("car","writexl","dplyr","readxl","patchwork","ggplot2","rmarkdown","stringr"))
+```
+
+```{r set up, include = FALSE}
+library(papaja)
+library(tidyverse)
+library(car)
+library(writexl)
+library(dplyr) 
+library(readxl)
+library(tidyr)
+library(stringr)
+library(patchwork)
+library(ggplot2)
+library(broom)
+library(rmarkdown)
+knitr::opts_chunk$set(echo = FALSE)
+r_refs("finalreference.bib")
+```
+
+# Introducation
+  Depression is the one of the principal causes of illness and disability in the world [@NIMH_Depression_2023]. The World Health Organization (WHO) has long been raising alarms about this medical condition, considering it impacts more than 300 million individuals globally [@WHO_Depression_2017]. Meanwhile, depression is highly prevalent in adolescence [@NIMH_Depression_2023]. According to WHO's definition, adolescents are the individuals aged from 10 to 19 years old [@WHO_Adolecents_2021]. Adolescence is an important developmental period marked by formative biological and social transition [@blakemore_is_2014]. Experiencing depression or any kind of mental health struggle during this period can disrupt these essential processes, which ultimately can affect an individual’s long-term socioeconomic standing and social relationships, causing but not limited to failure to complete secondary school, unemployment, and pregnancy/parenthood [@clayborne_systematic_2019]. Researchers indicated that considering the high rates of depressed mood, depressive syndromes, and depressive disorders that occur during adolescence, treatment and research efforts will never be sufficient to meet the full needs of the population [@nolen2013handbook].
+  
+  Chinese adolescents' mental health has received attention from scholars in recent years. Studies have shown that adolescents in China experience emotional disturbances, including depression, at levels equal to or greater than their American peers [@hesketh_anxiety_2005]. @quach_effects_2015 analyzed in their research that this could stem from the societal focus on academic success and its strong link to financial prosperity and social standing.
+  
+  Notable gender differences in terms of both depression prevalence and clinical symptoms were found, highlighting women were approximately twice as likely as men to suffer from this mental disorder[@jung_association_2019;@nolen1990sex]. Similar findings have been discovered in research focused on adolescents, revealing that adolescent females are also exposed to a greater vulnerability to depression[@lewis_gender_2015]. Specifically, @sun_more_2023 in their study with sample of Chinese adolescents indicated that female adolescents in China exhibit a higher prevalence and severity of depressive symptoms, such as insomnia. 
+
+## Current Study 
+  Expanding upon prior research into depression among Chinese adolescents [@sun_more_2023], the present study aims to investigate and analyze gender disparities in the severity of depression and three associated symptoms, including somatization/anxiety, cognitive impairment, and hopelessness. According to the above discussion of gender differences, we predict that Chinese female adolescents with depression would have a more severe degree of depression, represented by a higher depression score.
+  
+  In the context of somatization/anxiety, Hamilton asserted that some patients may exhibit a paradox of depression, characterized by an absence of depressed mood, underscoring the importance of considering somatic symptoms, like perceived body pain and hypochondriasis, in identifying depression [@lipowski1990somatization]. The somatization/anxiety dimension utilized in this study is identified as one of the factors in the 24-item Hamilton depression rating scale (HAMD-24), details of which will be elaborated in the methods section. A study among high school students revealed a substantial gender difference in the prevalence of anxious somatic depression, with females reporting higher rates [@silverstein1995gender]. Building on this finding, our study anticipates observing a similar gender disparity, that females tend to have a higher intensity of somatization/anxiety symptoms, among Chinese adolescents aged 10-19 who have been diagnosed with depression.
+  
+  Cognitive impairment, also sometimes termed cognitive dysfunction, encompasses difficulties with attention, learning, short-term and working memory, problem-solving capabilities, processing speed, and motor function [@lam2014cognitive]. These impairments are frequently associated with cognitive-affective biases, resulting in distorted information processing and unusual responses to negative feedback and decision-making scenarios [@lam2014cognitive]. Presently, research focusing on adult populations has not definitively demonstrated a gender disparity in cognitive impairment among patients with depression [@lv2023sex]. However, considering that women generally report more severe symptoms of depression, and taking into account different sample age ranges from @lv2023sex's previous study, we anticipate that cognitive impairment will be more pronounced in female adolescents.
+  
+  Hopelessness is characterized by pessimistic expectations regarding future situations and events [@alloy1987depression]. @beck1993hopelessness regarded hopelessness as the third element of his cognitive negative triad of depression, which encompasses the self and the external environment, as well as a significant risk factor for suicide. Furthermore, a study conducted during the COVID-19 pandemic on the mental health of adolescents reported that moderate to severe hopelessness was more prevalent among adolescent females than males[@takacs2023large]. Following this, our study hypothesizes a similar picture that among Chinese adolescents with depression, females will exhibit higher levels of hopelessness.
+  
+  This study, as a substudy of a large-scale investigation into adolescent depression in China, aims to explore the manifestation of gender differences in the severity of depression and three specific depressive symptoms. It hopes to contribute to a more comprehensive understanding of this condition within the cultural and regional context of China and to propose more gender-targeted treatment approaches in the field of clinical psychology. Further more, we wish to raise awareness among more people, including governments, educational institutions, and parents, about adolescents depression within the context of a high-pressure culture, contributing to more targeted solutions for Chinese adolescents.
+  
+# Method
+## Participants
+  Participants were recruited between March 2021 and June 2023 from the Shanghai Pudong New Area Mental Health Center. They underwent structured psychiatric interviews administered by trained psychiatrists at the health center, who utilized the formally translated Chinese version of the 24-item Hamilton depression rating scale (HAMD-24)[@hamilton_rating_1960]. This standardized assessment tool is widely recognized and accepted within the professional field. Eligible participants for this study specifically had to satisfy the following inclusionary criteria: (1) adolescents aged between 10 and 19 years old; (2) HAMD-24 score bigger or equal to 8. A total of 577 adolescent participants were included (Female = 436; Male = 141). There were no exclusion criteria. The terms 'Male' and 'Female' are employed to denote the binary sexes of participants, referring to the biological attributes assigned at birth based on physical anatomy and physiological characteristics [@heidari_sex_2016]. The Institutional Review Board (Medical Ethics Committee of Shanghai Pudong New Area Mental Health Center) approved the study (Ethical approval number: [2022] Review No. (011), Trial registry name: Auxiliary diagnosis model of adolescent depression based on multimodal data, Clinical trial registration identification number: ChiCTR2300070007, Registration date: 2023/1/17, URL for the registry: https://www.chictr.org.cn/showprojEN.html?proj=191048). Written informed consent was obtained from patients or their legal parents before participating in the study.  
+  
+## Measures
+  In the current study, we employed the 24-item Chinese version of the Hamilton Depression Rating Scale (HAM-D) [@hamilton_rating_1960]. This version includes seven symptom factors critical for our research focus: somatization/anxiety, weight change, cognitive impairment, diurnal variation, retardation, sleep disturbance, and hopelessness [@sun_more_2023]. The HAM-D uses a five-level scoring method ranging from 0 to 4 points, with each level defined as (0) none; (1) mild; (2) moderate; (3) severe; (4) very severe. Additionally, a few items employ a three-level scoring method from 0 to 2 points, categorized as (0) none; (1) mild to moderate; (2) severe. Notablly, this is a general description of the levels in the HAM-D scoring system; each scoring item has more detailed and specific guidelines.
+
+  Our study’s depression score is derived from the total HAM-D score, which adds up the scores for all items, while a higher score represents higher depression severity. A score exceeding 35 points suggests severe depression, while a score above 20 points indicates mild to moderate depression. Conversely, a score below 8 points likely denotes the absence of depression symptoms [@hamilton_rating_1960]. We specifically focused on three symptom factors in our analysis: somatization/anxiety, cognitive impairment, and hopelessness.
+
+  The somatization/anxiety factor score is derived from a cumulative score of five items in the HAMD-24 (Hamilton Depression Rating Scale): Somatic Symptoms-General, Anxiety-Somatic, Somatic Symptoms-Gastrointestinal, Hypochondria, and Insight [@hamilton_rating_1960]. The "Somatic Symptoms-General" item evaluates the presence of clear symptoms such as feelings of heaviness or sensations in limbs, back, or neck, back pain, headaches, muscle pain, overall weakness, or fatigue. The "Anxiety-Somatic" item covers somatic symptoms of anxiety, including dry mouth, bloating, diarrhea, hiccups, colic, palpitations, headache, hyperventilation and sighing, as well as frequent urination and sweating. "Hypochondria" is scored based on the level of preoccupation with bodily functions: 1 point for excessive focus, 2 points for persistent health concerns, 3 points for hypochondriacal delusions, and 4 points for such delusions accompanied by hallucinations. Lastly, the "Insight" item assesses whether the person recognizes and acknowledges their depression and illness.
+
+  Moving to cognitive impairment, this factor’s score aggregates six items: Feelings of Guilt, Suicide, Agitation, Depersonalization and Derealization, Paranoid Symptoms, and Obsessional Symptoms [@hamilton_rating_1960]. The "Agitation" item particularly assesses signs of restlessness, such as the inability to sit still, fidgeting, or engaging in small, repetitive movements like playing with hands, hair, or hand wringing, nail-biting, hair pulling, and biting of lips. The "Depersonalization and Derealization" item reflects experiences of unreality or nihilistic delusions, with this item measuring the frequency and intensity of such delusions.
+
+  Lastly, the hopelessness factor score combines three items: Motor Retardation, Feeling of Despair, and Feeling of Inferiority[@hamilton_rating_1960], among them, the "Motor Retardation" item specifically focuses on the participant's perceived reduction in daily functional abilities, encompassing activities like dressing, grooming, eating, bed making, and maintaining personal hygiene.
+
+# Results
+## Destriptions
+  In Figure \@ref(fig:gender-depression-bar), the bar graph shows a higher number of female participants across all levels of depression compared to male participants. This description of the sample, where females outnumber males, represents a potential limitation of current study, as it may skew our findings towards female experiences of depression. Notably, our participant criteria required a minimum mild depression level (HAMD-24 total score greater than 7), and the predominance of female participants in our sample could be indicative of the higher incidence rates of depression among adolescent females, aligning with previous research findings [@sun_more_2023].
+  
+  As shown in Figure \@ref(fig:boxplot-score-gender), the graph presents a comparative analysis of HAMD total or sub-scores by gender. It features four different box plots, representing the total HAM-D depression score and the three contributing component depressive symptom scores. From the Figure, we can observe that female adolescent depression patients have higher median and mean scores than their male counterparts in the depression total score, cognitive impairment score, and hopelessness score. In the case of the somatization/anxiety score, male and female patients have relatively close median scores, but the mean score for females is still higher than that for males.
+  
+```{r gender-depression-bar, echo=FALSE, fig.cap="Bar Graph of Depression Level by Gender"}
+file_path <- "ADepression.xlsx"
+Depression.data <- readxl::read_excel(file_path)
+
+gender_depression_bar <- ggplot(Depression.data, aes(x = Depression_Level, fill = Gender)) +
+  geom_bar(position = "dodge") +
+  geom_text(stat = 'count', aes(label = after_stat(count)), vjust = -0.5, position = position_dodge(width = 0.9), size = 3) +
+  scale_fill_manual(values = c("pink", "blue")) +
+  labs(title = "Bar Graph of Depression Level by Gender",
+       x = "Depression Level",
+       y = "Count") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+print(gender_depression_bar)
+```
+
+  
+```{r boxplot-score-gender, echo=FALSE, fig.cap="The Combined Descriptive Boxplot of Scores by Gender"}
+# Descriptive data 
+file_path <- "ADepression.xlsx"
+Depression.data <- readxl::read_excel(file_path)
+
+mean_point <- function() {
+  geom_point(stat = "summary", fun = mean, aes(shape = "Mean"), 
+             size = 2, show.legend = FALSE)
+}
+
+# Depression Score
+p1 <- ggplot(Depression.data, aes(x = Gender, y = Depression_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "deeppink", "Male" = "blue"), guide = "none") +
+  mean_point() +
+  labs(y = "Depression Score") +
+  theme_minimal()
+
+# Somatization/Anxiety Score
+p2 <- ggplot(Depression.data, aes(x = Gender, y = Somatic_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "royalblue"), guide = "none") +
+  mean_point() +
+  labs(y = "Somatization/Anxiety Score") +
+  coord_cartesian(ylim = c(0, 15)) +
+  theme_minimal()
+
+# Cognitive Impairment Score
+p3 <- ggplot(Depression.data, aes(x = Gender, y = Cognitive_Impairment_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "royalblue"), guide = "none") +
+  mean_point() +
+  labs(y = "Cognitive Impairment Score") +
+  coord_cartesian(ylim = c(0, 15)) +
+  theme_minimal()
+
+# Hopelessness Score
+p4 <- ggplot(Depression.data, aes(x = Gender, y = Hopelessness_Score, fill = Gender)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 8) +
+  scale_fill_manual(values = c("Female" = "pink", "Male" = "royalblue"), guide = "none") +
+  mean_point() +
+  labs(y = "Hopelessness Score") +
+  coord_cartesian(ylim = c(0, 15)) +
+  theme_minimal()
+
+combined_boxplot <- (p1 | p2 | p3 | p4) +
+  plot_layout(guides = 'collect') &
+  plot_annotation(title = "Scores by Gender", caption = "Note: black spot represents mean point")
+  
+# Print the combined plot
+print(combined_boxplot)
+```
+
+```{r table-mean-gender, echo=FALSE, results='asis'}
+file_path <- "Adepression.xlsx"
+Destription <- readxl::read_excel(file_path)
+
+Destription$Somatic_Score <- as.numeric(Destription$Somatic_Score)
+Destription$Cognitive_Impairment_Score <- as.numeric(Destription$Cognitive_Impairment_Score)
+Destription$Hopelessness_Score <- as.numeric(Destription$Hopelessness_Score)
+Destription$Depression_Score <- as.numeric(Destription$Depression_Score)
+
+male_stats <- Destription[Destription$Gender == 'Male', ]
+
+male_mean <- round(mean(male_stats$Depression_Score, na.rm = TRUE), 2)
+male_mean_somatic <- round(mean(male_stats$Somatic_Score, na.rm = TRUE), 2)
+male_mean_cognitive <- round(mean(male_stats$Cognitive_Impairment_Score, na.rm = TRUE), 2)
+male_mean_hopelessness <- round(mean(male_stats$Hopelessness_Score, na.rm = TRUE), 2)
+
+female_stats <- Destription[Destription$Gender == 'Female', ]
+
+female_mean <- round(mean(female_stats$Depression_Score, na.rm = TRUE), 2)
+female_mean_somatic <- round(mean(female_stats$Somatic_Score, na.rm = TRUE), 2)
+female_mean_cognitive <- round(mean(female_stats$Cognitive_Impairment_Score, na.rm = TRUE), 2)
+female_mean_hopelessness <- round(mean(female_stats$Hopelessness_Score, na.rm = TRUE), 2)
+
+table_data <- data.frame(
+  Mean = c("Depression Score", "Somatization/Anxiety Score", "Cognitive Impairment Score", "Hopelessness Score"),
+  Male = c(male_mean, male_mean_somatic, male_mean_cognitive, male_mean_hopelessness),
+  Female = c(female_mean, female_mean_somatic, female_mean_cognitive, female_mean_hopelessness)
+)
+
+# Display the table
+apa_table(table_data,
+          caption = "Mean Scores by Gender",
+          escape = FALSE  
+)
+```
+  Meanwhile, the Table \@ref(tab:table-mean-gender) presents a more direct gender differences in mean where the mean of depression score for males is `r round(male_mean, 2)` lower than female's, which is `r round(female_mean, 2)`. Meanwhile, for the symptoms factor scores, female depressed adolescents have higher mean in somatization/anxiety score (`r round(female_mean_somatic, 2)`), cognitive impairment score (`r round(female_mean_cognitive, 2)`), as well as hopelessness score (`r round(female_mean_hopelessness, 2)`) compared to male depressed adolescents who have a mean somatization/anxiety score of `r male_mean_somatic`, a cognitive impairment score of `r male_mean_cognitive`, and a hopelessness score of `r male_mean_hopelessness`.
+ 
+## Statistic Analysis
+  We used `r cite_r("finalreference.bib")` for references. 
+```{r regression-depression-gender, echo=FALSE, results='asis'}
+modol <- lm(Depression_Score ~ Gender, data = Depression.data)
+regression_model <- tidy(modol)
+
+regression_model$p.value <- sapply(regression_model$p.value, function(p) {
+  if (p < .001) {
+    "< .001"
+  } else if (p < .01) {
+    "< .01"
+  } else {
+    as.character(round(p, 2))
+  }
+})
+
+apa_table(regression_model,
+          caption = "Regression Analysis of Depression Scores by Gender",
+          note = "This table presents the output of a linear regression model with Depression Score as the outcome and Gender as the predictor. P values are reported as '< .01' for values between .001 and .01, and as '< .001' for values less than .001.",
+          escape = FALSE
+)
+```
+
+  The regression analysis is performed to examine the impact of gender on depression scores. As Table \@ref(tab:regression-depression-gender) indicates, there is a statistically significant difference in depression scores by gender, with males showing lower depression scores compared to females (\( \beta \) = `r round(regression_model$estimate[2], 2)`, t = `r round(regression_model$statistic[2], 2)`, p `r regression_model$p.value[regression_model$term == "GenderMale"]`).
+  
+```{r ttest-scores-gender, echo=FALSE, results='asis'}
+t_tests <- list(
+  "Depression Score" = t.test(Depression_Score ~ Gender, data = Depression.data),
+  "Somatization/Anxiety Score" = t.test(Somatic_Score ~ Gender, data = Depression.data),
+  "Cognitive Impairment Score" = t.test(Cognitive_Impairment_Score ~ Gender, data = Depression.data),
+  "Hopelessness Score" = t.test(Hopelessness_Score ~ Gender, data = Depression.data)
+)
+
+t_test_results <- do.call(rbind, lapply(t_tests, function(t, name) {
+  data.frame(
+    t.value = round(t$statistic, 2),
+    df = round(t$parameter, 2),
+    row.names = NULL,
+    p.value = if (t$p.value < .001) {
+      "< .001"
+    } else if (t$p.value < .01) {
+      "< .01"
+    } else {
+      as.character(round(t$p.value, 2))
+    }
+  )
+}, names(t_tests)))
+
+t_test_results <- as.data.frame(t_test_results, stringsAsFactors = FALSE)
+
+apa_table(t_test_results,
+          caption = "T-test Results for Scores by Gender",
+          note = "This table includes t values, degrees of freedom (df), and p values for the comparison of scores by gender. P values are reported as '< .01' for values between .001 and .01, and as '< .001' for values less than .001.",
+          escape = FALSE)
+
+```
+
+  The independent t-tests are conducted to assess the gender differences in depression scores and three depressive symptoms' scores. The results indicate that females have higher mean scores compared to males in all categories, consistent with the data presented Table \@ref(tab:table-mean-gender). Specifically, females report significantly higher levels of depression, shown by the total HAMD-24 depression score, than males(t(`r round(t_tests[['Depression Score']]$parameter, digits = 2)`) = `r round(t_tests[['Depression Score']]$statistic, digits = 2)`, p `r t_test_results$p.value[1]`).
+  Meanwhile, cognitive impairment scores are significantly higher for females(t(`r round(t_tests[['Cognitive Impairment Score']]$parameter, digits = 2)`) = `r round(t_tests[['Cognitive Impairment Score']]$statistic, digits = 2)`, p `r t_test_results$p.value[3]`). Also, a significant difference in hopelessness scores is also found, where (t(`r round(t_tests[['Hopelessness Score']]$parameter, digits = 2)`) = `r round(t_tests[['Hopelessness Score']]$statistic, digits = 2)`, p `r t_test_results$p.value[4]`), with females experiencing higher levels of hopelessness, as we hypothesized. 
+  However, the trend for higher somatization/anxiety mean in females is noted in our data description, but the result of the t-test is not statistically significant, where (t(`r round(t_tests[['Somatization/Anxiety Score']]$parameter, digits = 2)`) = `r round(t_tests[['Somatization/Anxiety Score']]$statistic, digits = 2)`, p = `r t_tests[['Somatization/Anxiety Score']]$p.value`), greater than .05 (see Table \@ref(tab:ttest-scores-gender)).
+
+# Discussion
+  The statistic findings mostly align with our expectations, showing that female adolescents with depression exhibit a higher severity of depression and more pronounced symptoms of cognitive impairment and hopelessness compared to their male peers. These results partly reveal the higher vulnerability of female adolescents, suggesting the need for more targeted clinical treatments based on gender differences. Future studies should explore topics such as whether certain cultural values or gender stereotypes in China contribute to this vulnerability in female adolescents, as well as potential resilience factors. 
+  
+  At the same time, the independent test on gender differences in somatization/anxiety reports insignificant differences. Our study has a limitation due to the number of female patients significantly exceeding that of male patients, which might have contributed to the non-significant findings in gender differences for the somatization/anxiety depressive factor. Furthermore, it's important to note that the definition of the somatization/anxiety factor in our study, as based on the HAMD-24, might vary from definitions used in other studies that have reported significant gender differences in these symptoms. For example, the study by @silverstein1995gender, as I mentioned in introduction, included disordered eating and headache as their anxiety and somatic symptomatology, whereas our study incorporates a broader range of items such as hypochondria and insights, in addition to headache as a general somatic symptom. Further research on gender differences in somatization/anxiety depressive symptoms is warranted to explain the inconsistencies observed in different related studies, and a more generalized definition of these symptoms is also needed.
+  
+  As a component of the broader investigation into depression among Chinese adolescents, this sub-study provides essential background information and data analytical insights, shedding light on gender disparities in depression severity and depressive symptoms within this demographic. Such insights are crucial for fostering a nuanced comprehension of mental health issues among non-Western youth. Future sub-studies will delve into gender-based distinctions in other depressive symptoms, as well as examine the severity of depressive symptoms across distinct age segments (10-13, 14-17, and 18-19 years) among Chinese adolescents with depression. Our study on depression in Chinese adolescents aims to provide detailed information from a clinical psychology perspective and contributes to the development of a culture-specific psychological treatment system for patients that fits the cultural context.
+  
+## Limitations
+   One of the limitations is the notable number imbalance with more female than male participants, as I mentioned previously, potentially biasing the analysis of gender differences. Additionally, our reliance on binary sex categorization did not consider participants' self-identified gender, potentially overlooking the nuances between biological sex and gender identity. Future research should aim for more gender-balanced samples and consider a broader spectrum of gender identities to enhance our understanding of depression in adolescents.
+
+\newpage
+
+# Reference
+
+:::{#ref custom-style="Bibliography"}
+:::

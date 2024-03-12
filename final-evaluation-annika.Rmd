@@ -1,0 +1,233 @@
+---
+title: "final-evaluation-annika"
+output: html_document
+date: "2024-03-08"
+---
+
+# Assignment Info
+
+- **Student name:** Annika Liu
+- **Project title:** Exploring the Gender Difference in Depression Severity and Depressive Symptoms in Chinese Adolescents
+- **Submission date:** Mar 5 at 11:43pm
+
+## Report plan summary
+
+This final report is designed to explore potential gender differences in the severity and symptoms of depression—including somatization/anxiety, cognitive impairment, and hopelessness—among Chinese adolescents aged between 10 and 19. As a substudy of a large project, this study lays the groundwork for future investigations into additional symptoms and related factors. In alignment with meeting discussions, I have streamlined the scope of this report by omitting the analysis of comorbid anxiety, instead opting to introduce an examination of cognitive impairment—a depression symptom not previously discussed. Therefore, the data analysis tests are changing accordingly. 
+Considering its integral role in a broader research initiative, this report will prioritize the components assigned to me by my PI. The introduction will be a bit long, underscoring the critical need for research into depression among Chinese adolescents and briefly talking about gender differences in depression. It will also provide a literature review of each of the three depressive symptoms under examination. As discussed in our meeting, the method section will encompass a detailed measurement component, elaborating on the use of HAM-D 24 in this study, including the calculation of the total and related symptom factors scores. This section will also include a breakdown of the factors involved and provide interpretations for some of the less intuitive component items associated with these factors. This will be followed by a "normal" length result section, concentrating on the analysis of test outcomes. Given the broader spectrum of symptoms and factors beyond the scope of this analysis which will be studied by my lab people in the future, the study's implements and implications may not be immediately apparent, resulting in a relatively lighter discussion section. Nevertheless, I will talk a bit about the implications of the analyzed components and limitations and provide a very brief overview of the prospective research and analytical directions for our study.
+The data description will showcase two visual representations. Firstly, a bar graph depicting the counts of depression levels — categorized as mild, moderate, and severe — will be presented, with a breakdown by gender. This graph aims to highlight the distributional differences between male and female adolescents. The second, a consolidated boxplot, will juxtapose gender comparisons across the depression score and three symptom categories. This innovative approach, derived from recent advancements in my practice with ggplot, marks a departure from the initial plan of four separate boxplots. A table with the means of each score separated by gender will be provided. 
+The statistical analysis in this study will initially run a linear regression to examine the impact of gender on depression scores. An APA table displaying the results will be provided. β coefficients, t, and p-values will also be reported for in-text reference. This will be followed by four t-tests designed to identify significant gender differences in depression scores once again, as well as scores of somatization/anxiety, cognitive impairment, and hopelessness. A comprehensive table covering all t-test results will also be presented, summarizing p-values, degrees of freedom (df), and t-values, serving as a key reference for evaluating statistical significance. Notably, due to some very small p-values, the reporting format will be adjusted through functions that p-values are displayed as '<.01' for values between .001 and .01, and as '< .001' for values less than .001. 
+My personal objectives for this report are twofold. Firstly, I am committed to enhancing my analytical capabilities by learning R, a robust tool that I have come to appreciate for its streamlined processes, superior to those of SPSS, as well as for its capacity to yield intuitive results and produce visually appealing graphs. I aim to use R's potential more skillfully in my forthcoming research projects. Secondly, I endeavor for this report to make a substantive contribution to our lab’s large study of depression among Chinese adolescents. I seek to cultivate a deeper understanding of the gender disparities in adolescent depression, and the parts I am responsible for, contributing to the clinical implementation. I hope these insights will not only enrich our current study and knowledge but also serve as a strategic and statistical guide for fellow researchers in our lab as they navigate future investigations into additional factors and symptoms. 
+
+# Assessment
+
+The lists of expectations in each category are to help you understand the kinds of things I'm looking for as I grade. These **do not** map onto point values. A checked box indicates the expectation was met or exceeded. (This also helps me spot patterns across students to identify ways I can improve the syllabus and lectures for future students.)
+
+Ratings indicate overall success for each category and loosely map onto points. Starting from 20 points, no points are lost for the highest rating, -3 for the lowest, and somewhere in between for the middle ratings. Points lost in that range are dependent on how many issues there are, how much they matter, whether it's technicality vs problem of consequence, whether it's the same core issue that lost you points in a different section, whether exceeding expectations elsewhere compensate for a small issue, whether it's something we talked about in your report plan meeting, etc. 
+
+Additional comments are included below the ratings as needed. Final project and class grades are included at the end of the document.
+
+**WARNING: Grades for this assignment are going to be lower than you expect!** Don't freak out. I use "specs-based grading", which works very differently from the letter-grade-to-percentage conversion you are probably used to. It's more like Harry Potter OWLs -- 19/20 is outstanding, 16-18 exceeds expectations (not a C!), 13-15 meets expectations (not an F!), etc. You're not down to T(roll) until you're in the negatives. Remember this is only 20% of your final grade!
+
+## .Rmd/PDF match
+
+**Expectations:**
+
+- [x] PDF submitted to Canvas is identical to the PDF created when I knit your .Rmd
+- [x] Knitting does not produce any errors or problematic warnings
+
+**Rating:**
+
+- [x] Perfect match
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive error(s), missing PDF, or significant problems
+
+*No additional comments*
+
+## Data read-in, prep, wrangling
+
+**Expectations:**
+
+- [ ] Data preparation and wrangling code present (may separate files)
+- [ ] Intermediate datasets (if used) are functional and read in successfully
+- [x] Raw or intermediate data read into .Rmd code chunk
+- [ ] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [ ] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [x] Prohibitive errors or significant problems
+
+No scripts or code chunks show creation, preparation, or wrangling the data file "ADepression.xlsx". If this script is in fact currently present in your repo (at time of submisson) and I have just missed it, let me know where to find it and I'll re-evaluate.
+
+## Figures, tables, analyses
+
+### Figures
+
+**Expectations:**
+
+- [x] At least 2 plots are produced in .Rmd chunks (not imported images)
+- [x] Figures are different kinds of plots 
+- [x] Figures follow report plan (may have inconsequential deviations)
+- [x] Figures are publication-quality
+- [x] Figures are sensibly captioned with `fig.cap` chunk option
+- [ ] Figures are informative and interpretable
+- [ ] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+Excellent!!
+
+### Table
+
+**Expectations:** 
+
+If you included more than the one required table, only one needs to meet expectations.
+
+- [x] At least 1 table is produced in .Rmd chunk
+- [x] Table follows report plan (may have inconsequential deviations)
+- [x] Table is publication-quality
+- [x] Table is sensibly captioned within the function (e.g., the kable caption argument)
+- [x] Table is informative and interpretable
+- [ ] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+Very minor note: to be truly "publication-ready" you should rename your column headings to use APA-style capitalization/punctuation/spacing (e.g., "std.error" -> "Standard Error" or "SE")
+
+### Analysis
+
+**Expectations:**
+
+If you included more than the one required analysis (or other requirements agreed on in the report plan), only one needs to meet expectations.
+
+- [x] At least 1 statistical analysis is executed in .Rmd chunk (or sourced code if appropriate)
+- [x] Analysis follows report plan (may have inconsequential deviations)
+- [x] Analysis is executed correctly
+- [x] Analysis is appropriate (not necessarily ideal) for data type(s) and research questions
+- [x] Analysis is referenced and interpreted in narrative text
+- [x] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+*No additional comments*
+
+## Manuscript
+
+### Narrative text
+
+**Expectations:**
+
+- [x] Narrative text includes 1500+ words distributed across 4 sections
+- [x] Sufficient literature review (per report plan)
+- [x] Sufficient methods section (per report plan)
+- [x] Sufficient results section (per report plan)
+- [x] Sufficient discussion (per report plan)
+- [x] Narrative provides sufficient context and interpretation for all figures, tables, and analyses
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+*No additional comments*
+
+### Markdown
+
+**Expectations:**
+
+- [x] Figures and tables are successfully referenced with markdown syntax
+- [x] At least 2 in-text code references
+- [x] At least 1 in-text code reference includes in-text function
+- [x] R Markdown is used effectively to follow APA format (e.g., headings, emphasized text)
+- [x] YAML header is functional and complete
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+*No additional comments*
+
+### BibTeX
+
+**Expectations:**
+
+- [x] At least 10 in-text citations using BibTeX reference syntax
+- [x] In-text citations are rendered without errors
+- [x] In-text citations have no obvious problems (e.g., incorrect special characters)
+- [x] R and R packages are cited in-text using `cite_r()`
+- [x] References page renders without errors
+- [x] References page is APA formatted and free of obvious problems
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+Minor notes: section title should be "References" (plural); there are one or two places with missing spaces between text and in-text citation, just simple typos, not a problem
+
+## GitHub & best practices
+
+These expectations will not have an impact on your grade unless there are egregious issues, but I include them to give you feedback on what you can do if you use this workflow going forward.
+
+**Expectations:**
+
+- [x] GitHub repo and contained files are sensibly and informatively named
+- [ ] GitHub repo is well-structured and tidy
+- [x] GitHub README.md file is informative
+- [x] Commit messages are informative
+- [x] Style is (relatively) consistent
+- [ ] Comments are frequent and informative
+- [x] Code chunks have informative names, follow 1-chunk-1-thing rule, and are distributed throughout the text
+
+*No additional comments*
+
+## Overall
+
+Great work, Annika! This is a very high-quality final project. Although I have to take off points for missing data preparation code, it's clear that you have an excellent grasp of the skills covered in the course. (And the lost points won't cost you your A in the class!)
+
+# Grade
+
+- **Final report grade:** 17
+- **Class participation grade:** 19
+- **Weekly assignments:** 60
+- **TOTAL Final course grade:** 96
